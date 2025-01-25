@@ -1,0 +1,1000 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Advanced Relay Control</title>
+    <style>
+     body {
+  background: linear-gradient(135deg, #ff6f61, #f39c12, #1e3c72);
+  font-family: 'Poppins', sans-serif;
+  color: #ecf0f1;
+  height: 100vh;
+  margin: 20px; 
+}
+
+
+body::before {
+  content: '';
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0));
+  animation: pulseEffect 20s infinite;
+  transform: rotate(0deg);
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.2));
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+    
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+  background: linear-gradient(145deg, #1c2b44, #374a6c);
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3), -10px -10px 20px rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+}
+
+
+
+
+h1 {
+  align-items: center; /* উলম্বভাবে সেন্টার */
+  background: linear-gradient(145deg, #34495e, #2c3e50); /* ডার্ক গ্রেডিয়েন্ট */
+  border-radius: 20px; /* গোলাকার কোণা */
+  padding: 20px; /* ভেতরের ফাঁকা */
+  margin: 20px auto; /* সেন্টারে পজিশন */
+  box-shadow: 
+    10px 10px 20px rgba(0, 0, 0, 0.4), 
+    -10px -10px 20px rgba(255, 255, 255, 0.1); /* নেয়ুমরফিক শ্যাডো */
+  transform: perspective(1000px) rotateX(10deg); /* ৩ডি ইফেক্ট */
+  animation: float 3s ease-in-out infinite; /* ফ্লোটিং অ্যানিমেশন */
+
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.5);
+    color: #f1c40f;
+     background: linear-gradient(145deg, #34495e, #2c3e50); /* ডার্ক গ্রেডিয়েন্ট */
+    animation: glowText 2.5s infinite;
+
+}
+
+
+    
+      .relay {
+  margin-top: 3%;
+  background: linear-gradient(145deg, #1e2a47, #3a4a6d);
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3), -10px -10px 20px rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+  width: 95%;
+  transition: all 0.4s ease-in-out;
+}
+
+
+
+.relay-header {
+  font-size: 2.2em; /* বড় এবং স্পষ্ট ফন্ট সাইজ */
+  font-weight: 700; /* গাঢ় টেক্সট */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #f39c12; /* উজ্জ্বল রঙ */
+  background: linear-gradient(145deg, #f1c40f, #e67e22); /* গ্র্যাডিয়েন্ট প্রভাব */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* শুধুমাত্র গ্র্যাডিয়েন্ট প্রভাব প্রদর্শন */
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5), -4px -4px 6px rgba(255, 255, 255, 0.1); /* উন্নত থ্রিডি লুক */
+  position: relative;
+  letter-spacing: 2px; /* ফাঁকা স্পেস যোগ করা হয়েছে */
+  transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out; /* স্মুথ অ্যানিমেশন */
+}
+
+.relay-header:hover {
+  transform: scale(1.1); /* হালকা বড় হওয়া */
+  text-shadow: 6px 6px 10px rgba(0, 0, 0, 0.7), -6px -6px 10px rgba(255, 255, 255, 0.2); /* আরও গভীর হোভার প্রভাব */
+}
+
+    
+      .relay button {
+        padding: 26px;
+        font-size: 2.7rem;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.1);
+        background: linear-gradient(145deg, #4e9f3d, #34a852);
+        width: 26%;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin: 1%;
+      }
+    
+      .relay button:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.5), -15px -15px 25px rgba(255, 255, 255, 0.2);
+      }
+    
+      .relay button:active {
+        transform: scale(0.95);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.1);
+      }
+    
+       .relay button.on {
+        background: linear-gradient(145deg, #28a745, #34c759);
+  box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+}
+
+    
+      .relay button.off {
+       background: linear-gradient(145deg, #dc3545, #e83e4d);
+  box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+}
+
+ 
+      .relay button.set {
+        background: linear-gradient(145deg, #8e44ad, #9b59b6);
+ box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+      }
+    
+      .relay button.alarm-set {
+        background: linear-gradient(145deg, #f39c12, #f1c40f);
+ box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+      }
+    .relay button.alarm-off {
+        background: linear-gradient(145deg, #f39c12, #f1c40f);
+ box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+      }
+.relay button.alarm-on {
+    background: linear-gradient(145deg, #9b59b6, #8e44ad); /* বেগুনি গ্রেডিয়েন্ট */
+    box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+}
+
+      .relay button.timer-set {
+        background: linear-gradient(145deg, #e67e22, #d35400);
+      box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+      }
+    .relay button.timer-off {
+        background: linear-gradient(145deg, #e67e22, #d35400);
+      box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+      }
+.relay button.timer-on {
+    background: linear-gradient(145deg, #1abc9c, #16a085); /* উজ্জ্বল এবং শান্ত গ্রেডিয়েন্ট */
+    box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.3), inset -4px -4px 12px rgba(255, 255, 255, 0.2);
+}
+
+      #clock-container {
+  display: flex; /* ক্লকটি সেন্টারে রাখার জন্য */
+  justify-content: center; /* অনুভূমিকভাবে সেন্টার */
+  align-items: center; /* উলম্বভাবে সেন্টার */
+  background: linear-gradient(145deg, #34495e, #2c3e50); /* ডার্ক গ্রেডিয়েন্ট */
+  border-radius: 20px; /* গোলাকার কোণা */
+  padding: 20px; /* ভেতরের ফাঁকা */
+  margin: 20px auto; /* সেন্টারে পজিশন */
+  max-width: 400px; /* সর্বোচ্চ প্রস্থ */
+  box-shadow: 
+    10px 10px 20px rgba(0, 0, 0, 0.4), 
+    -10px -10px 20px rgba(255, 255, 255, 0.1); /* নেয়ুমরফিক শ্যাডো */
+  transform: perspective(1000px) rotateX(10deg); /* ৩ডি ইফেক্ট */
+  animation: float 3s ease-in-out infinite; /* ফ্লোটিং অ্যানিমেশন */
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: perspective(1000px) rotateX(10deg) translateY(0); /* মূল অবস্থান */
+  }
+  50% {
+    transform: perspective(1000px) rotateX(10deg) translateY(-10px); /* উপরে ওঠা */
+  }
+}
+
+#clock {
+  font-size: 3em; /* বড় ফন্ট সাইজ */
+  font-weight: bold; /* বোল্ড টেক্সট */
+  color: #f1c40f; /* উজ্জ্বল হলুদ রঙ */
+  text-shadow: 
+    0px 4px 8px rgba(0, 0, 0, 0.4), 
+    0px 0px 10px #f1c40f; /* গ্লো এবং শ্যাডো */
+  letter-spacing: 2px; /* অক্ষরের মধ্যে ফাঁকা */
+  animation: glow 1.5s ease-in-out infinite; /* গ্লো অ্যানিমেশন */
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 
+      0px 4px 8px rgba(0, 0, 0, 0.4), 
+      0px 0px 10px #f1c40f; /* প্রাথমিক গ্লো */
+  }
+  50% {
+    text-shadow: 
+      0px 4px 8px rgba(0, 0, 0, 0.4), 
+      0px 0px 20px #f39c12; /* পরিবর্তনশীল গ্লো */
+  }
+}
+
+
+/* Modal Styles */
+.modal {
+   display: none;
+  position: fixed;
+  top: 27%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; /* প্রস্থ আরও বড় করা */
+  max-width: 700px;
+  background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.modal-content {
+  padding: 40px; /* প্যাডিং আরও বড় করা */
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  font-size: 2rem; /* ফন্ট সাইজ আরও বড় করা */
+  text-align: center;
+}
+
+/* Picker Styles */
+.picker {
+  margin: 20px auto;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 90%; /* পুরো স্ক্রিনে মানানসই */
+}
+
+.picker select {
+  padding: 15px 25px; /* ব্যালান্সড প্যাডিং */
+  font-size: 1.5rem; /* মাঝারি ফন্ট সাইজ */
+  border: 2px solid #444; /* ডার্ক বর্ডার */
+  border-radius: 12px; /* মডারেট বর্ডার রেডিয়াস */
+  background: linear-gradient(145deg, #6c757d, #adb5bd); /* নরম গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড */
+  color: #ffffff;
+  width: 100%;
+  max-width: 400px; /* সর্বোচ্চ প্রস্থ */
+  cursor: pointer;
+  font-weight: 500;
+  appearance: none;
+ 
+   overflow-y: auto; /* স্ক্রল যোগ করা */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease; /* স্মুথ ইফেক্ট */
+}
+
+.picker select:hover {
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3), -8px -8px 20px rgba(255, 255, 255, 0.8);
+  transform: scale(1.05); /* হোভার অবস্থায় হালকা বড় */
+}
+
+.picker select:focus {
+  border-color: rgba(0, 123, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.9);
+}
+
+/* Default Option Styles */
+.picker select option {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  background: linear-gradient(145deg, #e9ecef, #ced4da); /* হালকা গ্রেডিয়েন্ট */
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.picker select option:hover {
+  background: #d4edda; /* হোভার অবস্থায় লাইট গ্রিন */
+  color: #000;
+}
+
+.picker select option:checked {
+  background: #28a745; /* সিলেক্ট অবস্থায় ডার্ক গ্রিন */
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* Media Query for 375x553 Screen */
+@media (max-width: 375px) {
+  .picker {
+    margin: 15px auto;
+  }
+
+ 
+
+  .picker select:hover {
+    transform: scale(1.03); /* ছোট স্ক্রিনে হালকা বড় */
+  }
+}
+
+
+
+
+
+/* Modal Footer Styles */
+.modal-footer {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 25px; /* প্যাডিং আরও বড় করা */
+  background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+  border-top: 1px solid #ccc;
+}
+
+.modal-footer button {
+  padding: 20px 30px; /* প্যাডিং আরও বড় করা */
+  font-size: 1.8rem; /* ফন্ট সাইজ আরও বড় করা */
+  border: none;
+  border-radius: 35px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), -4px -4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.modal-footer button:hover {
+  transform: scale(1.1);
+  box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.3), -7px -7px 15px rgba(255, 255, 255, 0.2);
+}
+
+.modal-footer button:active {
+  transform: scale(0.95);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.1);
+}
+
+.modal-footer button.cancel {
+  background: linear-gradient(145deg, #dc3545, #e83e4d);
+}
+
+.modal-footer button:not(.cancel) {
+  background: linear-gradient(145deg, #007bff, #0056b3);
+}
+
+
+.countdown {
+  margin-top: 15px; /* সামান্য বাড়তি স্পেস */
+  font-size: 2.5rem; /* ফন্ট সাইজ আরও বড় করা */
+  font-weight: bold; /* বোল্ড টেক্সট */
+  color: #ffffff; /* হালকা রঙের টেক্সট */
+  background: linear-gradient(145deg, #ff5722, #ff9800); /* গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড */
+  border: 2px solid #ffeb3b; /* আকর্ষণীয় বর্ডার */
+  border-radius: 10px; /* গোলাকার বর্ডার */
+  padding: 10px 20px; /* প্যাডিং উন্নত করা */
+  text-align: center; /* টেক্সট কেন্দ্রীভূত */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.2); /* নীউমরফিক শ্যাডো */
+  display: inline-block; /* ইনলাইন ব্লক রাখার জন্য */
+  animation: pulse 2s infinite; /* ধীরে ধীরে পালসিং ইফেক্ট */
+  transition: all 0.3s ease-in-out; /* স্মুথ ট্রানজিশন */
+}
+
+/* Hover Effect */
+.countdown:hover {
+  transform: scale(1.1); /* হোভার অবস্থায় একটু বড় হবে */
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.5), -10px -10px 25px rgba(255, 255, 255, 0.3);
+}
+
+/* Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.4), -8px -8px 20px rgba(255, 255, 255, 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* কাস্টম ড্রপডাউন কন্টেইনার */
+.custom-dropdown {
+  position: relative;
+  width: 320px;
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+}
+
+/* নির্বাচিত অপশন */
+.dropdown-selected {
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #4a148c, #7b1fa2); /* সামঞ্জস্যপূর্ণ রঙ */
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 
+    0px 6px 10px rgba(0, 0, 0, 0.2),
+    0px 2px 4px rgba(255, 255, 255, 0.2) inset;
+}
+
+/* কাস্টম তীর আইকন */
+.dropdown-selected .arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #ffffff;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* তীর ঘুরানোর অ্যানিমেশন */
+.dropdown-selected .arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* অপশন লিস্ট */
+.dropdown-options {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  background: #fafafa; /* হালকা ব্যাকগ্রাউন্ড */
+  border-radius: 15px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  animation: dropdownFadeIn 0.4s ease;
+}
+
+.dropdown-options.show {
+  display: block;
+}
+
+/* অপশন লিস্টের এলিমেন্ট */
+.dropdown-options li {
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  color: #4a148c; /* টেক্সট কালার সামঞ্জস্যপূর্ণ */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+/* অপশন আইকন */
+.dropdown-options li .icon {
+  font-size: 1.2rem;
+  color: #7b1fa2; /* আইকনের রঙ সামঞ্জস্যপূর্ণ */
+}
+
+/* হোভার এবং অ্যাক্টিভ ইফেক্ট */
+.dropdown-options li:hover {
+  background: linear-gradient(145deg, #7b1fa2, #4a148c); /* সামঞ্জস্যপূর্ণ গ্রেডিয়েন্ট */
+  color: #ffffff;
+  transform: scale(1.03);
+}
+
+.dropdown-options li:hover .icon {
+  color: #ffffff;
+}
+
+/* অ্যানিমেশন */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* রেসপনসিভ ডিজাইন */
+@media (max-width: 768px) {
+  .custom-dropdown {
+    width: 100%;
+  }
+
+  .dropdown-selected {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+
+  .dropdown-options li {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+}
+
+@media (min-width: 769px) {
+  .custom-dropdown {
+    width: 400px;
+  }
+
+  .dropdown-selected {
+    font-size: 1.4rem;
+    padding: 18px 22px;
+  }
+
+  .dropdown-options li {
+    font-size: 1.2rem;
+    padding: 18px 22px;
+  }
+}
+
+
+
+
+    </style>
+    
+  </head>
+  
+  <body>
+    
+    <div class='container'>
+      <h1>Control Smart Plug 2</h1>
+      <div id="clock-container">
+        <div id="clock"></div>
+      </div>
+      
+<!-- কাস্টম ড্রপডাউন -->
+<div class="custom-dropdown">
+  <div class="dropdown-selected" onclick="toggleDropdown()">
+    <span>Select an option</span>
+    <i class="arrow"></i>
+  </div>
+  <ul class="dropdown-options">
+    <li onclick="selectOption('Go to Smart Plug', 'SmartPlug.html')">
+      <i class="icon">🔋</i> Go to Smart Plug
+    </li>
+    <li onclick="selectOption('Go to Smart Plug 2', 'index.html')">
+      <i class="icon">🔌</i> Go to Smart Plug 2
+    </li>
+  <li onclick="selectOption('Go to Fan Light', 'FanLight.html')">
+    <i class="icon">💡</i> Go to Fan Light
+  </li>
+  </ul>
+</div>
+
+    <div class='relay'>
+      <div class='relay-header'>Relay 1</div>
+       <div class='flex-box'>
+      <button id='relay0' class='on' onclick='toggleRelay(0)'><i class='fas fa-lightbulb'>OFF</i></button>
+      <button id='alarmBtn0' class='alarm-off' onclick='openAlarmModal(0)'><i class='fas fa-alarm-clock'>Set</i></button>
+      <button id='timerBtn0' class='timer-off' onclick='openTimerModal(0)'><i class='fas fa-hourglass-half'>Set</i></button>
+       </div>
+       <div id="alarmCountdown1" class="countdown"></div>
+       <div id="timerCountdown1" class="countdown"></div>
+       
+    </div>
+    <div class='relay'>
+      <div class='relay-header'>Relay 2</div>
+        <div class='flex-box'>
+      <button id='relay1' class='off' onclick='toggleRelay(1)'><i class='fas fa-lightbulb'>OFF</i></button>
+      <button id='alarmBtn1' class='alarm-off' onclick='openAlarmModal(1)'><i class='fas fa-alarm-clock'>Set</i></button>
+      <button id='timerBtn1' class='timer-off' onclick='openTimerModal(1)'><i class='fas fa-hourglass-half'>Set</i></button>
+       </div>
+        <div id="alarmCountdown2" class="countdown"></div>
+        <div id="timerCountdown2" class="countdown"></div>
+        
+    </div>
+    <div class='relay'>
+      <div class='relay-header'>Relay 3</div>
+       <div class='flex-box'>
+      <button id='relay2' class='off' onclick='toggleRelay(2)'><i class='fas fa-lightbulb'></i>OFF</button>
+      <button id='alarmBtn2' class='alarm-off' onclick='openAlarmModal(2)'><i class='fas fa-alarm-clock'>Set</i></button>
+      <button id='timerBtn2' class='timer-off' onclick='openTimerModal(2)'><i class='fas fa-hourglass-half'>Set</i></button>
+      </div>
+        <div id="alarmCountdown3" class="countdown"></div>
+       <div id="timerCountdown3" class="countdown"></div>
+       
+    </div>
+    <div class='relay'>
+      <div class='relay-header'>Relay 4</div>
+        <div class='flex-box'>
+      <button id='relay3' class='on' onclick='toggleRelay(3)'><i class='fas fa-lightbulb'></i>OFF</button>
+      <button id='alarmBtn3' class='alarm-off' onclick='openAlarmModal(3)'><i class='fas fa-alarm-clock'>Set</i></button>
+      <button id='timerBtn3' class='timer-off' onclick='openTimerModal(3)'><i class='fas fa-hourglass-half'>Set</i></button>
+        </div>
+          <div id="alarmCountdown4" class="countdown"></div>
+         <div id="timerCountdown4" class="countdown"></div>
+        
+
+    </div>
+    </div>
+    
+    <div id='alarmModal' class='modal'>
+      <div class='modal-content'>
+          <h2>Set Alarm</h2>
+          <div class='picker'>
+              <select id='alarmHour'></select>
+              <select id='alarmMinute'></select>
+              <select id='alarmSecond'></select>
+              <select id='alarmPeriod'>
+                  <option value='AM'>AM</option>
+                  <option value='PM'>PM</option>
+              </select>
+          </div>
+          <div class='modal-footer'>
+              <button onclick='setAlarm()'>Set</button>
+              <button class='cancel' onclick='closeModal()'>Cancel</button>
+          </div>
+      </div>
+  </div>
+
+    <div id='timerModal' class='modal'>
+      <div class='modal-content'>
+        <h2>Set Timer</h2>
+        <div class='picker'>
+          <select id='timerDuration'>
+            <option value='5'>5 Seconds</option>
+            <option value='10'>10 Seconds</option>
+            <option value='15'>15 Seconds</option>
+            <option value='30'>30 Seconds</option>
+            <option value='60'>1 Minute</option>
+            <option value='120'>2 Minute</option>
+            <option value='180'>3 Minute</option>
+            <option value='240'>4 Minute</option>
+            <option value='300'>5 Minutes</option>
+            <option value='600'>10 Minutes</option>
+            <option value='900'>15 Minutes</option>
+            <option value='1020'>17 Minutes</option>
+            <option value='1200'>20 Minutes</option>
+            <option value='1800'>30 Minutes</option>
+            <option value='2700'>45 Minutes</option>
+            <option value='3600'>60 Minutes</option>
+            <option value='5400'>90 Minutes</option>
+            <option value='7200'>120 Minutes</option>
+          </select>
+        </div>
+
+        <div class='modal-footer'>
+          <button onclick='setTimer()'>Set</button>
+          <button class='cancel' onclick='closeModal()'>Cancel</button>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      
+
+
+
+// Dropdown options dynamically populate করার জন্য ফাংশন
+function populateDropdown(selectId, start, end, pad = false) {
+        const select = document.getElementById(selectId);
+        for (let i = start; i <= end; i++) {
+            const option = document.createElement('option');
+            option.value = pad ? String(i).padStart(2, '0') : i;
+            option.textContent = pad ? String(i).padStart(2, '0') : i;
+            select.appendChild(option);
+        }
+    }
+
+    // ঘন্টা, মিনিট, সেকেন্ড এর ড্রপডাউন ফিল করতে কল করুন
+    populateDropdown('alarmHour', 1, 12); // Hour: 1 to 12
+    populateDropdown('alarmMinute', 0, 59, true); // Minute: 00 to 59
+    populateDropdown('alarmSecond', 0, 59, true); // Second: 00 to 59
+
+
+
+  // JavaScript code to toggle relays using API
+// রিলে টগল করার জন্য JavaScript ফাংশন
+function toggleRelay(relayId) {
+    // বেস API URL তৈরি করা (রিলের আইডি অনুযায়ী ডাইনামিক)
+    const apiUrl = `http://192.168.1.190/toggle?relay=${relayId}`;
+
+    // API-তে GET রিকোয়েস্ট পাঠানো
+    fetch(apiUrl)
+        .then(response => {
+            // রেসপন্স স্ট্যাটাস চেক করা (ঠিক আছে কিনা)
+            if (!response.ok) {
+                throw new Error(`Relay ${relayId} টগল করতে ব্যর্থ: ${response.statusText}`);
+            }
+            return response.json(); // API যদি JSON রেসপন্স পাঠায়, সেটি রিটার্ন করা
+        })
+        .then(data => {
+            // API রেসপন্স সফল হলে কনসোলে মেসেজ দেখানো (ঐচ্ছিক)
+            console.log(`Relay ${relayId} সফলভাবে টগল হয়েছে।`, data);
+        })
+        .catch(error => {
+            // যদি কোনো সমস্যা হয়, তা কনসোলে দেখানো
+            console.error(`Relay ${relayId} টগল করার সময় ত্রুটি:`, error);
+        });
+}
+
+// Function to update button classes based on relay statuses
+// রিলে স্ট্যাটাস আপডেট করার ফাংশন
+function updateRelayStatuses() {
+    // রিলে স্ট্যাটাসের এপিআই ইউআরএল
+    const apiUrl = "http://192.168.1.190/get_status";
+
+    // API থেকে ডেটা সংগ্রহ করার জন্য ফেচ কল
+    fetch(apiUrl)
+        .then(response => {
+            // রেসপন্স চেক করা (ঠিক আছে কিনা)
+            if (!response.ok) {
+                throw new Error(`Failed to fetch relay statuses: ${response.statusText}`);
+            }
+            // রেসপন্স ডেটা JSON আকারে রিটার্ন করা
+            return response.json();
+        })
+        .then(data => {
+            // রিলে ডেটা চেক করা (array ফরম্যাটে আছে কিনা)
+            if (data.relays && Array.isArray(data.relays)) {
+                // প্রতিটি রিলের স্ট্যাটাস লুপ করে আপডেট করা
+                data.relays.forEach((status, index) => {
+                    // সংশ্লিষ্ট বাটনের আইডি ধরে সিলেক্ট করা
+                    const button = document.getElementById(`relay${index}`);
+                    if (button) {
+                        // রিলের স্ট্যাটাস যদি true হয়
+                        if (status) {
+                            button.classList.remove("off"); // "off" ক্লাস মুছে ফেলা
+                            button.classList.add("on"); // "on" ক্লাস যোগ করা
+                            button.innerHTML = `<i class='fas fa-lightbulb'></i> ON`; // বাটনের টেক্সট ON সেট করা
+                        } else {
+                            // রিলের স্ট্যাটাস যদি false হয়
+                            button.classList.remove("on"); // "on" ক্লাস মুছে ফেলা
+                            button.classList.add("off"); // "off" ক্লাস যোগ করা
+                            button.innerHTML = `<i class='fas fa-lightbulb'></i> OFF`; // বাটনের টেক্সট OFF সেট করা
+                        }
+                    }
+                });
+            } else {
+                // যদি ডেটা ফরম্যাট সঠিক না হয়
+                console.error("Invalid relay status data:", data);
+            }
+        })
+        .catch(error => {
+            // যদি API কল করার সময় কোনো সমস্যা হয়
+            console.error("Error fetching relay statuses:", error);
+        });
+}
+
+// প্রতি ০.3 সেকেন্ড পর পর রিলে স্ট্যাটাস আপডেট করার জন্য সেট করা
+setInterval(updateRelayStatuses, 300);
+
+// প্রাথমিক অবস্থায় রিলে স্ট্যাটাস আপডেট করার জন্য কল করা
+updateRelayStatuses();
+
+
+function setAlarm() {
+    // ইউজারের পছন্দ করা সময় সংগ্রহ করা
+    var hour = parseInt(document.getElementById('alarmHour').value);
+    var minute = parseInt(document.getElementById('alarmMinute').value);
+    var second = parseInt(document.getElementById('alarmSecond').value);
+    var period = document.getElementById('alarmPeriod').value;
+
+    // সিলেক্টেড রিলে আইডি
+    var relayElement = document.getElementById('relay' + alarmModalRelay);
+
+    if (!relayElement) {
+        console.error("Relay element not found for alarmModalRelay:", alarmModalRelay);
+        alert("Relay element not found! Please try again.");
+        return;
+    }
+
+    var relayIndex = parseInt(alarmModalRelay); // relayIndex নির্ধারণ করা
+
+    // AM/PM অনুযায়ী সময় ২৪ ঘন্টায় রূপান্তর
+    if (period === 'PM' && hour < 12) {
+        hour += 12;
+    }
+    if (period === 'AM' && hour === 12) {
+        hour = 0;
+    }
+
+    // বর্তমান সময় এবং এলার্ম সময় তুলনা করা
+    var now = new Date();
+    var alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, second);
+
+    // যদি এলার্ম সময় অতীত হয়, এটি পরবর্তী দিনের জন্য সেট করা
+    if (alarmTime <= now) {
+        alarmTime.setDate(alarmTime.getDate() + 1);
+    }
+
+    // এলার্ম সময় পর্যন্ত কত সময় বাকি আছে (মিলিসেকেন্ডে)
+    var timeToAlarm = alarmTime - now;
+
+    console.log(`Alarm set for Relay ${relayIndex + 1} at ${alarmTime}.`);
+
+    // কাউন্টডাউন ডিসপ্লে ডিভ সিলেক্ট করা
+    var countdownDisplay = document.getElementById(`alarmCountdown${relayIndex + 1}`);
+    if (!countdownDisplay) {
+        console.error(`Countdown display not found for Relay ${relayIndex + 1}`);
+        return;
+    }
+
+    // এলার্ম বাটন সিলেক্ট করা এবং ক্লাস আপডেট করা
+    var alarmButton = document.getElementById(`alarmBtn${relayIndex}`);
+    if (alarmButton) {
+        alarmButton.classList.add('alarm-on');
+        alarmButton.classList.remove('alarm-off');
+    }
+
+    // কাউন্টডাউন শুরু করা
+    var remainingTime = timeToAlarm / 1000; // সেকেন্ডে রূপান্তর
+    updateCountdownDisplay(countdownDisplay, remainingTime);
+
+    var countdownInterval = setInterval(function () {
+        remainingTime--;
+
+        if (remainingTime <= 0) {
+            clearInterval(countdownInterval); // কাউন্টডাউন বন্ধ করা
+            countdownDisplay.textContent = 'Alarm triggered!';
+
+            // বাটনের ক্লাস পরিবর্তন
+            if (alarmButton) {
+                alarmButton.classList.add('alarm-off');
+                alarmButton.classList.remove('alarm-on');
+            }
+
+            // নির্ধারিত সময় পরে রিলে স্টেট পরিবর্তন করা
+            console.log(`Alarm triggered for Relay ${relayIndex + 1}.`);
+            toggleRelay(relayIndex); // relayIndex দিয়ে toggleRelay কল করা
+        } else {
+            updateCountdownDisplay(countdownDisplay, remainingTime);
+        }
+    }, 1000); // প্রতি ১ সেকেন্ডে আপডেট
+
+    closeModal(); // মডাল বন্ধ করা
+}
+
+// কাউন্টডাউন ডিসপ্লে আপডেট করার জন্য সহায়ক ফাংশন
+function updateCountdownDisplay(displayElement, remainingTime) {
+    var hours = Math.floor(remainingTime / 3600);
+    var minutes = Math.floor((remainingTime % 3600) / 60);
+    var seconds = Math.floor(remainingTime % 60);
+
+    displayElement.textContent = `Time remaining: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function setTimer() {
+    // `timerDuration` থেকে ডিউরেশন সংগ্রহ করা (সেকেন্ডে)
+    var duration = parseInt(document.getElementById('timerDuration').value); // ডিউরেশন সেকেন্ডে
+
+    // টার্গেট রিলে বোতামের ID পাওয়া
+    var relayElement = document.getElementById('relay' + timerModalRelay);
+
+    // relayElement চেক করা
+    if (!relayElement) {
+        console.error("Relay element not found for timerModalRelay:", timerModalRelay);
+        alert("Relay element not found! Please try again.");
+        return;
+    }
+
+    // relayIndex নির্ধারণ করা
+    var relayIndex = parseInt(timerModalRelay); // relay0, relay1 থেকে ইনডেক্স বের করা
+
+    // ডিউরেশন ভ্যালিড চেক করা
+    if (isNaN(duration) || duration <= 0) {
+        alert("Please select a valid duration!");
+        return;
+    }
+
+    console.log(`Setting timer for Relay ${relayIndex + 1} for ${duration} seconds.`);
+
+    // কাউন্টডাউন ডিসপ্লে ডিভ সিলেক্ট করা
+    var countdownDisplay = document.getElementById(`timerCountdown${relayIndex + 1}`);
+    if (!countdownDisplay) {
+        console.error(`Countdown display not found for Relay ${relayIndex + 1}`);
+        return;
+    }
+
+    // টাইমার বাটন সিলেক্ট করা এবং ক্লাস আপডেট করা
+    var timerButton = document.getElementById(`timerBtn${relayIndex}`);
+    if (timerButton) {
+        timerButton.classList.add('timer-on');
+        timerButton.classList.remove('timer-off');
+    }
+
+    // কাউন্টডাউন শুরু করা
+    var remainingTime = duration;
+
+    countdownDisplay.textContent = `Time remaining: ${remainingTime} seconds`;
+
+    var countdownInterval = setInterval(function () {
+        remainingTime--;
+
+        if (remainingTime <= 0) {
+            clearInterval(countdownInterval); // কাউন্টডাউন বন্ধ করা
+            countdownDisplay.textContent = `Timer ended.`;
+
+            // নির্ধারিত সময় শেষে বাটনের ক্লাস পরিবর্তন করা
+            if (timerButton) {
+                timerButton.classList.add('timer-off');
+                timerButton.classList.remove('timer-on');
+            }
+
+            // নির্ধারিত সময় শেষে রিলে স্টেট পরিবর্তন করা
+            console.log(`Timer ended. Toggling Relay ${relayIndex + 1}.`);
+            toggleRelay(relayIndex); // relayIndex দিয়ে toggleRelay কল করা
+        } else {
+            countdownDisplay.textContent = `Time remaining: ${remainingTime} seconds`;
+        }
+    }, 1000); // প্রতি ১ সেকেন্ডে আপডেট
+
+    closeModal();  // মডাল বন্ধ করা
+}
+
+
+      
+function closeModal() { 
+  document.getElementById('alarmModal').style.display = 'none'; 
+  document.getElementById('timerModal').style.display = 'none'; 
+}
+
+function openAlarmModal(relay) { 
+  alarmModalRelay = relay; 
+  document.getElementById('alarmModal').style.display = 'block'; 
+}
+
+
+      
+function openTimerModal(relay) {
+  timerModalRelay = relay; 
+  document.getElementById('timerModal').style.display = 'block'; 
+}
+
+      
+function updateClock() { 
+  var now = new Date(); 
+  var h = now.getHours(); 
+  var m = now.getMinutes(); 
+  var s = now.getSeconds(); 
+  var ampm = h >= 12 ? 'PM' : 'AM'; 
+  h = h % 12; 
+  h = h ? h : 12; 
+  m = m < 10 ? '0' + m : m; 
+  s = s < 10 ? '0' + s : s; 
+  document.getElementById('clock').innerHTML = h + ':' + m + ':' + s + ' ' + ampm; 
+}
+setInterval(updateClock, 1000); 
+updateClock();
+
+ // ড্রপডাউন টগল করার জন্য
+  function toggleDropdown() {
+    document.querySelector('.dropdown-options').classList.toggle('show');
+    document.querySelector('.dropdown-selected .arrow').classList.toggle('rotate');
+  }
+
+  // অপশন সিলেক্ট করার জন্য
+  function selectOption(label, url) {
+    document.querySelector('.dropdown-selected span').textContent = label;
+    document.querySelector('.dropdown-options').classList.remove('show');
+    document.querySelector('.dropdown-selected .arrow').classList.remove('rotate');
+    window.location.href = url; // পেজ রিডিরেক্ট
+  }
+
+  // ক্লিকের বাইরে ক্লিক করলে ড্রপডাউন বন্ধ
+  window.onclick = function (event) {
+    if (!event.target.closest('.custom-dropdown')) {
+      const dropdown = document.querySelector('.dropdown-options');
+      const arrow = document.querySelector('.dropdown-selected .arrow');
+      if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+        arrow.classList.remove('rotate');
+      }
+    }
+  };
+    </script>
+  </body>
+</html>
