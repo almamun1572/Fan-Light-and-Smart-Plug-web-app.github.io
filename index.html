@@ -49,6 +49,9 @@ body::after {
 
 
 h1 {
+overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* টাইটেল বা ক্লক আংশিক কাটলে এটি ঠিক করতে সাহায্য করবে */
   align-items: center; /* উলম্বভাবে সেন্টার */
   background: linear-gradient(145deg, #34495e, #2c3e50); /* ডার্ক গ্রেডিয়েন্ট */
   border-radius: 20px; /* গোলাকার কোণা */
@@ -449,6 +452,7 @@ h1 {
 
 /* অপশন লিস্ট */
 .dropdown-options {
+   overflow: visible; /* ড্রপডাউন দেখাতে বাধা না দিতে */
   list-style: none;
   margin: 10px 0 0;
   padding: 0;
