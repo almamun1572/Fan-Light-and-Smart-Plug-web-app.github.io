@@ -4,6 +4,7 @@
   <head>
     <title>Advanced Relay Control</title>
     <style>
+    
      body {
   background: linear-gradient(135deg, #ff6f61, #f39c12, #1e3c72);
   font-family: 'Poppins', sans-serif;
@@ -49,6 +50,7 @@ body::after {
 
 
 h1 {
+ padding-top: 200px;
   align-items: center; /* উলম্বভাবে সেন্টার */
   background: linear-gradient(145deg, #34495e, #2c3e50); /* ডার্ক গ্রেডিয়েন্ট */
   border-radius: 20px; /* গোলাকার কোণা */
@@ -229,7 +231,7 @@ h1 {
 .modal {
    display: none;
   position: fixed;
-  top: 27%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%; /* প্রস্থ আরও বড় করা */
@@ -449,6 +451,7 @@ h1 {
 
 /* অপশন লিস্ট */
 .dropdown-options {
+   overflow: visible; /* ড্রপডাউন দেখাতে বাধা না দিতে */
   list-style: none;
   margin: 10px 0 0;
   padding: 0;
@@ -507,39 +510,19 @@ h1 {
   }
 }
 
-/* রেসপনসিভ ডিজাইন */
-@media (max-width: 768px) {
-  .custom-dropdown {
-    width: 100%;
-  }
 
-  .dropdown-selected {
-    font-size: 1rem;
-    padding: 12px 15px;
-  }
 
-  .dropdown-options li {
-    font-size: 1rem;
-    padding: 12px 15px;
-  }
+
+@media only screen and (max-width: 375px) {
+    /* মোবাইল ডিভাইসের জন্য CSS নিয়ম */
+    h1 {
+        font-size: 20px;
+    }
+    .custom-dropdown {
+        display: block;
+    }
+    /* অন্যান্য স্টাইল */
 }
-
-@media (min-width: 769px) {
-  .custom-dropdown {
-    width: 400px;
-  }
-
-  .dropdown-selected {
-    font-size: 1.4rem;
-    padding: 18px 22px;
-  }
-
-  .dropdown-options li {
-    font-size: 1.2rem;
-    padding: 18px 22px;
-  }
-}
-
 
 
 
