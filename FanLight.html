@@ -4,7 +4,6 @@
   <head>
     <title>Advanced Relay Control</title>
     <style>
-
      body {
   background: linear-gradient(135deg, #ff6f61, #f39c12, #1e3c72);
   font-family: 'Poppins', sans-serif;
@@ -50,7 +49,6 @@ body::after {
 
 
 h1 {
- padding-top: 200px;
   align-items: center; /* উলম্বভাবে সেন্টার */
   background: linear-gradient(145deg, #34495e, #2c3e50); /* ডার্ক গ্রেডিয়েন্ট */
   border-radius: 20px; /* গোলাকার কোণা */
@@ -451,7 +449,6 @@ h1 {
 
 /* অপশন লিস্ট */
 .dropdown-options {
-   overflow: visible; /* ড্রপডাউন দেখাতে বাধা না দিতে */
   list-style: none;
   margin: 10px 0 0;
   padding: 0;
@@ -510,21 +507,53 @@ h1 {
   }
 }
 
+/* রেসপনসিভ ডিজাইন */
+@media (max-width: 768px) {
+  .custom-dropdown {
+    width: 100%;
+  }
 
+  .dropdown-selected {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
 
-
-@media only screen and (max-width: 375px) {
-    /* মোবাইল ডিভাইসের জন্য CSS নিয়ম */
-    h1 {
-        font-size: 20px;
-    }
-    .custom-dropdown {
-        display: block;
-    }
-    /* অন্যান্য স্টাইল */
+  .dropdown-options li {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
 }
 
+@media (min-width: 769px) {
+  .custom-dropdown {
+    width: 400px;
+  }
 
+  .dropdown-selected {
+    font-size: 1.4rem;
+    padding: 18px 22px;
+  }
+
+  .dropdown-options li {
+    font-size: 1.2rem;
+    padding: 18px 22px;
+  }
+}
+
+.alarm-item {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+}
 
     </style>
     
@@ -558,77 +587,95 @@ h1 {
 </div>
 
     <div class='relay'>
-      <div class='relay-header'>Relay 1</div>
-       <div class='flex-box'>
-      <button id='relay0' class='on' onclick='toggleRelay(0)'><i class='fas fa-lightbulb'>OFF</i></button>
-      <button id='alarmBtn0' class='alarm-off' onclick='openAlarmModal(0)'><i class='fas fa-alarm-clock'>Set</i></button>
-      <button id='timerBtn0' class='timer-off' onclick='openTimerModal(0)'><i class='fas fa-hourglass-half'>Set</i></button>
-       </div>
-       <div id="alarmCountdown1" class="countdown"></div>
-       <div id="timerCountdown1" class="countdown"></div>
-       
-    </div>
-    <div class='relay'>
-      <div class='relay-header'>Relay 2</div>
-        <div class='flex-box'>
-      <button id='relay1' class='off' onclick='toggleRelay(1)'><i class='fas fa-lightbulb'>OFF</i></button>
-      <button id='alarmBtn1' class='alarm-off' onclick='openAlarmModal(1)'><i class='fas fa-alarm-clock'>Set</i></button>
-      <button id='timerBtn1' class='timer-off' onclick='openTimerModal(1)'><i class='fas fa-hourglass-half'>Set</i></button>
-       </div>
-        <div id="alarmCountdown2" class="countdown"></div>
-        <div id="timerCountdown2" class="countdown"></div>
-        
-    </div>
-    <div class='relay'>
-      <div class='relay-header'>Relay 3</div>
-       <div class='flex-box'>
-      <button id='relay2' class='off' onclick='toggleRelay(2)'><i class='fas fa-lightbulb'></i>OFF</button>
-      <button id='alarmBtn2' class='alarm-off' onclick='openAlarmModal(2)'><i class='fas fa-alarm-clock'>Set</i></button>
-      <button id='timerBtn2' class='timer-off' onclick='openTimerModal(2)'><i class='fas fa-hourglass-half'>Set</i></button>
-      </div>
-        <div id="alarmCountdown3" class="countdown"></div>
-       <div id="timerCountdown3" class="countdown"></div>
-       
-    </div>
-    <div class='relay'>
-      <div class='relay-header'>Relay 4</div>
-        <div class='flex-box'>
-      <button id='relay3' class='on' onclick='toggleRelay(3)'><i class='fas fa-lightbulb'></i>OFF</button>
-      <button id='alarmBtn3' class='alarm-off' onclick='openAlarmModal(3)'><i class='fas fa-alarm-clock'>Set</i></button>
-      <button id='timerBtn3' class='timer-off' onclick='openTimerModal(3)'><i class='fas fa-hourglass-half'>Set</i></button>
-        </div>
-          <div id="alarmCountdown4" class="countdown"></div>
-         <div id="timerCountdown4" class="countdown"></div>
-        
+  <div class='relay-header'>Relay 1</div>
+  <div class='flex-box'>
+    <button id='relay1' class='relay-btn off' onclick='toggleRelay(1)'><i class='fas fa-lightbulb'>OFF</i></button>
+    <button id='alarmBtn1' class='alarm-off' onclick='openAlarmModal(1)'><i class='fas fa-alarm-clock'>Set</i></button>
+    <button id='timerBtn1' class='timer-off' onclick='openTimerModal(1)'><i class='fas fa-hourglass-half'>Set</i></button>
+  </div>
+  <div id="alarmCountdown1" class="countdown"></div>
+  <div id="timerCountdown1" class="countdown"></div>
+</div>
 
-    </div>
+<div class='relay'>
+  <div class='relay-header'>Relay 2</div>
+  <div class='flex-box'>
+    <button id='relay2' class='relay-btn off' onclick='toggleRelay(2)'><i class='fas fa-lightbulb'>OFF</i></button>
+    <button id='alarmBtn2' class='alarm-off' onclick='openAlarmModal(2)'><i class='fas fa-alarm-clock'>Set</i></button>
+    <button id='timerBtn2' class='timer-off' onclick='openTimerModal(2)'><i class='fas fa-hourglass-half'>Set</i></button>
+  </div>
+  <div id="alarmCountdown2" class="countdown"></div>
+  <div id="timerCountdown2" class="countdown"></div>
+</div>
+
+<div class='relay'>
+  <div class='relay-header'>Relay 3</div>
+  <div class='flex-box'>
+    <button id='relay3' class='relay-btn off' onclick='toggleRelay(3)'><i class='fas fa-lightbulb'>OFF</i></button>
+    <button id='alarmBtn3' class='alarm-off' onclick='openAlarmModal(3)'><i class='fas fa-alarm-clock'>Set</i></button>
+    <button id='timerBtn3' class='timer-off' onclick='openTimerModal(3)'><i class='fas fa-hourglass-half'>Set</i></button>
+  </div>
+  <div id="alarmCountdown3" class="countdown"></div>
+  <div id="timerCountdown3" class="countdown"></div>
+</div>
+
+<div class='relay'>
+  <div class='relay-header'>Relay 4</div>
+  <div class='flex-box'>
+    <button id='relay4' class='relay-btn off' onclick='toggleRelay(4)'><i class='fas fa-lightbulb'>OFF</i></button>
+    <button id='alarmBtn4' class='alarm-off' onclick='openAlarmModal(4)'><i class='fas fa-alarm-clock'>Set</i></button>
+    <button id='timerBtn4' class='timer-off' onclick='openTimerModal(4)'><i class='fas fa-hourglass-half'>Set</i></button>
+  </div>
+  <div id="alarmCountdown4" class="countdown"></div>
+  <div id="timerCountdown4" class="countdown"></div>
+</div>
+
+
     </div>
     
-    <div id='alarmModal' class='modal'>
-      <div class='modal-content'>
-          <h2>Set Alarm</h2>
-          <div class='picker'>
-              <select id='alarmHour'></select>
-              <select id='alarmMinute'></select>
-              <select id='alarmSecond'></select>
-              <select id='alarmPeriod'>
-                  <option value='AM'>AM</option>
-                  <option value='PM'>PM</option>
-              </select>
-          </div>
-          <div class='modal-footer'>
-              <button onclick='setAlarm()'>Set</button>
-              <button class='cancel' onclick='closeModal()'>Cancel</button>
-          </div>
-      </div>
+    <div id="alarmModal" class="modal">
+  <div class="modal-content">
+    <h2>Set Alarm</h2>
+    <div class="picker">
+      <!-- Alarm Number Selector -->
+      <label for="alarmNumber">Select Alarm:</label>
+      <select id="alarmNumber">
+        <option value="1">Alarm 1</option>
+        <option value="2">Alarm 2</option>
+        <option value="3">Alarm 3</option>
+        <option value="4">Alarm 4</option>
+        <option value="5">Alarm 5</option>
+      </select>
+      <br />
+      <!-- Time Picker -->
+      <select id="alarmHour"></select>
+      <select id="alarmMinute"></select>
+      <select id="alarmSecond"></select>
+      <select id="alarmPeriod">
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+      <!-- Action Picker -->
+      <select id="alarmaction">
+        <option value="on">ON</option>
+        <option value="off">OFF</option>
+        <option value="reset">Reset</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button onclick="setAlarm()">Set</button>
+      <button class="cancel" onclick="closeAlarmModal()">Cancel</button>
+    </div>
   </div>
+</div>
 
-    <div id='timerModal' class='modal'>
-      <div class='modal-content'>
-        <h2>Set Timer</h2>
-        <div class='picker'>
-          <select id='timerDuration'>
-            <option value='5'>5 Seconds</option>
+
+<div id='timerModal' class='modal'>
+  <div class='modal-content'>
+    <h2>Set Timer</h2>
+    <div class='picker'>
+      <select id='timerDuration'>
+          <option value='5'>5 Seconds</option>
             <option value='10'>10 Seconds</option>
             <option value='15'>15 Seconds</option>
             <option value='30'>30 Seconds</option>
@@ -636,308 +683,490 @@ h1 {
             <option value='120'>2 Minute</option>
             <option value='180'>3 Minute</option>
             <option value='240'>4 Minute</option>
-            <option value='300'>5 Minutes</option>
+            <option value='300' selected>5 Minutes</option>
             <option value='600'>10 Minutes</option>
             <option value='900'>15 Minutes</option>
             <option value='1020'>17 Minutes</option>
             <option value='1200'>20 Minutes</option>
             <option value='1800'>30 Minutes</option>
-            <option value='2700'>45 Minutes</option>
-            <option value='3600'>60 Minutes</option>
-            <option value='5400'>90 Minutes</option>
-            <option value='7200'>120 Minutes</option>
-          </select>
-        </div>
+            <option value='2700'>45 minutes</option>
+    <option value='3600'>1 hour</option>
+    <option value='4500'>1 hour 15 minutes</option>
+    <option value='5400'>1 hour 30 minutes</option>
+    <option value='6300'>1 hour 45 minutes</option>
+    <option value='7200'>2 hours</option>
+    <option value='9000'>2 hours 30 minutes</option>
+    <option value='10800'>3 hours</option>
+    <option value='12600'>3 hours 30 minutes</option>
+    <option value='14400'>4 hours</option>
+    <option value='18000'>5 hours</option>
+    <option value='21600'>6 hours</option>
+      </select>
 
-        <div class='modal-footer'>
-          <button onclick='setTimer()'>Set</button>
-          <button class='cancel' onclick='closeModal()'>Cancel</button>
-        </div>
-      </div>
+      <select id="timerAction">
+        <option value="on">ON</option>
+        <option value="off">OFF</option>
+        <option value="reset">Reset</option>
+      </select>
+
+      <select id="timerSlot">
+        <option value="1">Timer 1</option>
+        <option value="2">Timer 2</option>
+        <option value="3">Timer 3</option>
+        <option value="4">Timer 4</option>
+        <option value="5">Timer 5</option>
+      </select>
     </div>
+
+    <div class='modal-footer'>
+      <button onclick='setTimer()'>Set</button>
+      <button class='cancel' onclick='closeModal()'>Cancel</button>
+    </div>
+  </div>
+</div>
+
     
     <script>
       
 
 
 
-// Dropdown options dynamically populate করার জন্য ফাংশন
+// Dropdown options dynamically populate করার জন্য ফাংশন 
 function populateDropdown(selectId, start, end, pad = false) {
-        const select = document.getElementById(selectId);
-        for (let i = start; i <= end; i++) {
-            const option = document.createElement('option');
-            option.value = pad ? String(i).padStart(2, '0') : i;
-            option.textContent = pad ? String(i).padStart(2, '0') : i;
-            select.appendChild(option);
-        }
+    const select = document.getElementById(selectId);
+    select.innerHTML = ""; // আগের অপশন রিসেট করা
+    for (let i = start; i <= end; i++) {
+        const option = document.createElement('option');
+        option.value = pad ? String(i).padStart(2, '0') : i;
+        option.textContent = pad ? String(i).padStart(2, '0') : i;
+        select.appendChild(option);
+    }
+}
+
+// ঘন্টা, মিনিট, সেকেন্ড এর ড্রপডাউন ফিল করতে কল করুন
+populateDropdown('alarmHour', 1, 12); // Hour: 1 to 12
+populateDropdown('alarmMinute', 0, 59, true); // Minute: 00 to 59
+populateDropdown('alarmSecond', 0, 59, true); // Second: 00 to 59
+
+// বর্তমান সময় সেট করার ফাংশন
+function setCurrentTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    let ampm = hours >= 12 ? 'PM' : 'AM'; // AM/PM ঠিকমতো নির্ধারণ করা
+
+    // 12-hour format এ কনভার্ট করা
+    hours = hours % 12;
+    hours = hours ? hours : 12; // 0 হলে 12 বানিয়ে দাও
+
+    // ড্রপডাউনের মান সেট করা
+    document.getElementById('alarmHour').value = hours;
+    document.getElementById('alarmMinute').value = String(minutes).padStart(2, '0');
+    document.getElementById('alarmSecond').value = String(seconds).padStart(2, '0');
+    
+    // ✅ এই লাইন যোগ করো (AM/PM ঠিকমতো সেট করতে)
+    document.getElementById('alarmPeriod').value = ampm;
+}
+
+
+
+
+ /* ============================================== start togglerelay function ============================================== */
+
+
+   const authToken = "lhELh2hu1ouKuDoziYjxdzlrgSHrkGlg"; // Replace with your Blynk auth token
+    const apiUrl = "https://blynk.cloud/external/api";
+    const relayStates = [false, false, false, false];
+    const alarmTimers = [null, null, null, null];
+
+
+
+  function toggleRelay(index) {
+      const pin = `V${index}`;
+      relayStates[index - 1] = !relayStates[index - 1];
+      const value = relayStates[index - 1] ? 1 : 0;
+
+      fetch(`${apiUrl}/update?token=${authToken}&${pin}=${value}`)
+        .then(response => {
+          if (response.ok) {
+            updateButtonState(index);
+          } else {
+            alert("Failed to update relay state!");
+          }
+        })
+        .catch(error => console.error("Error:", error));
     }
 
-    // ঘন্টা, মিনিট, সেকেন্ড এর ড্রপডাউন ফিল করতে কল করুন
-    populateDropdown('alarmHour', 1, 12); // Hour: 1 to 12
-    populateDropdown('alarmMinute', 0, 59, true); // Minute: 00 to 59
-    populateDropdown('alarmSecond', 0, 59, true); // Second: 00 to 59
+    function updateButtonState(index) {
+      const button = document.getElementById(`relay${index}`);
+      if (relayStates[index - 1]) {
+        button.classList.remove("off");
+        button.classList.add("on");
+        button.innerText = "ON";
+      } else {
+        button.classList.remove("on");
+        button.classList.add("off");
+        button.innerText = "OFF";
+      }
+    }
+  function fetchRelayStates() {
+      for (let i = 1; i <= 4; i++) {
+        const pin = `V${i}`;
+        fetch(`${apiUrl}/get?token=${authToken}&${pin}`)
+          .then(response => response.text())
+          .then(value => {
+            relayStates[i - 1] = value === '1';
+            updateButtonState(i);
+          })
+          .catch(error => console.error(`Error fetching state for Relay ${i}:`, error));
+      }
+    }
+    setInterval(fetchRelayStates, 300); // Check relay states every 5 seconds
 
 
 
-  // JavaScript code to toggle relays using API
-// রিলে টগল করার জন্য JavaScript ফাংশন
-function toggleRelay(relayId) {
-    // বেস API URL তৈরি করা (রিলের আইডি অনুযায়ী ডাইনামিক)
-    const apiUrl = `http://192.168.1.180/toggle?relay=${relayId}`;
+ /* ============================================== end toggleRelay function ============================================== */
+ /* ============================================== start Alarm function ============================================== */
 
-    // API-তে GET রিকোয়েস্ট পাঠানো
-    fetch(apiUrl)
-        .then(response => {
-            // রেসপন্স স্ট্যাটাস চেক করা (ঠিক আছে কিনা)
-            if (!response.ok) {
-                throw new Error(`Relay ${relayId} টগল করতে ব্যর্থ: ${response.statusText}`);
-            }
-            return response.json(); // API যদি JSON রেসপন্স পাঠায়, সেটি রিটার্ন করা
-        })
-        .then(data => {
-            // API রেসপন্স সফল হলে কনসোলে মেসেজ দেখানো (ঐচ্ছিক)
-            console.log(`Relay ${relayId} সফলভাবে টগল হয়েছে।`, data);
-        })
-        .catch(error => {
-            // যদি কোনো সমস্যা হয়, তা কনসোলে দেখানো
-            console.error(`Relay ${relayId} টগল করার সময় ত্রুটি:`, error);
-        });
+const BLYNK_TOKEN = "lhELh2hu1ouKuDoziYjxdzlrgSHrkGlg";
+
+// Alarm Storage for each Relay (5 alarms per relay)
+const relayAlarms = {
+  relay1: [],
+  relay2: [],
+  relay3: [],
+  relay4: []
+};
+
+// Open Alarm Modal
+function openAlarmModal(relayId) {
+  const alarmModal = document.getElementById("alarmModal");
+  alarmModal.style.display = "block";
+  alarmModal.setAttribute("data-relay-id", relayId); // Set Relay ID
+  
+  console.log(`Opened Alarm Modal for Relay ID: ${relayId}`);
+
+  // অ্যালার্ম পিকার ওপেন করার সময় বর্তমান সময় সেট করবে
+  setCurrentTime();
 }
 
-// Function to update button classes based on relay statuses
-// রিলে স্ট্যাটাস আপডেট করার ফাংশন
-function updateRelayStatuses() {
-    // রিলে স্ট্যাটাসের এপিআই ইউআরএল
-    const apiUrl = "http://192.168.1.180/get_status";
 
-    // API থেকে ডেটা সংগ্রহ করার জন্য ফেচ কল
-    fetch(apiUrl)
-        .then(response => {
-            // রেসপন্স চেক করা (ঠিক আছে কিনা)
-            if (!response.ok) {
-                throw new Error(`Failed to fetch relay statuses: ${response.statusText}`);
-            }
-            // রেসপন্স ডেটা JSON আকারে রিটার্ন করা
-            return response.json();
-        })
-        .then(data => {
-            // রিলে ডেটা চেক করা (array ফরম্যাটে আছে কিনা)
-            if (data.relays && Array.isArray(data.relays)) {
-                // প্রতিটি রিলের স্ট্যাটাস লুপ করে আপডেট করা
-                data.relays.forEach((status, index) => {
-                    // সংশ্লিষ্ট বাটনের আইডি ধরে সিলেক্ট করা
-                    const button = document.getElementById(`relay${index}`);
-                    if (button) {
-                        // রিলের স্ট্যাটাস যদি true হয়
-                        if (status) {
-                            button.classList.remove("off"); // "off" ক্লাস মুছে ফেলা
-                            button.classList.add("on"); // "on" ক্লাস যোগ করা
-                            button.innerHTML = `<i class='fas fa-lightbulb'></i> ON`; // বাটনের টেক্সট ON সেট করা
-                        } else {
-                            // রিলের স্ট্যাটাস যদি false হয়
-                            button.classList.remove("on"); // "on" ক্লাস মুছে ফেলা
-                            button.classList.add("off"); // "off" ক্লাস যোগ করা
-                            button.innerHTML = `<i class='fas fa-lightbulb'></i> OFF`; // বাটনের টেক্সট OFF সেট করা
-                        }
-                    }
-                });
-            } else {
-                // যদি ডেটা ফরম্যাট সঠিক না হয়
-                console.error("Invalid relay status data:", data);
-            }
-        })
-        .catch(error => {
-            // যদি API কল করার সময় কোনো সমস্যা হয়
-            console.error("Error fetching relay statuses:", error);
-        });
+// Close Alarm Modal
+function closeAlarmModal() {
+  const alarmModal = document.getElementById("alarmModal");
+  alarmModal.style.display = "none";
+  alarmModal.removeAttribute("data-relay-id");
 }
 
-// প্রতি ০.3 সেকেন্ড পর পর রিলে স্ট্যাটাস আপডেট করার জন্য সেট করা
-setInterval(updateRelayStatuses, 300);
-
-// প্রাথমিক অবস্থায় রিলে স্ট্যাটাস আপডেট করার জন্য কল করা
-updateRelayStatuses();
-
-
+// Updated Alarm Setting Function
 function setAlarm() {
-    // ইউজারের পছন্দ করা সময় সংগ্রহ করা
-    var hour = parseInt(document.getElementById('alarmHour').value);
-    var minute = parseInt(document.getElementById('alarmMinute').value);
-    var second = parseInt(document.getElementById('alarmSecond').value);
-    var period = document.getElementById('alarmPeriod').value;
+  const alarmModal = document.getElementById("alarmModal");
+  const relayId = alarmModal.getAttribute("data-relay-id");
+  const alarmNumber = parseInt(document.getElementById("alarmNumber").value); // Alarm Number
+  const hour = parseInt(document.getElementById("alarmHour").value);
+  const minute = parseInt(document.getElementById("alarmMinute").value);
+  const second = parseInt(document.getElementById("alarmSecond").value);
+  const period = document.getElementById("alarmPeriod").value; // AM/PM
+  const action = document.getElementById("alarmaction").value;
 
-    // সিলেক্টেড রিলে আইডি
-    var relayElement = document.getElementById('relay' + alarmModalRelay);
+  const countdownDisplay = document.getElementById(`alarmCountdown${relayId}`);
 
-    if (!relayElement) {
-        console.error("Relay element not found for alarmModalRelay:", alarmModalRelay);
-        alert("Relay element not found! Please try again.");
-        return;
+  if (!relayId || isNaN(hour) || isNaN(minute) || isNaN(second) || !action || isNaN(alarmNumber)) {
+    alert("Please select a valid alarm number, time, and action.");
+    return;
+  }
+
+  // Convert to 24-hour time format
+  const alarmTime24 = convertTo24HourFormat(hour, minute, second, period);
+
+  // Save Alarm in relayAlarms
+  const alarms = relayAlarms[`relay${relayId}`];
+  if (!alarms[alarmNumber - 1]) {
+    alarms[alarmNumber - 1] = { time: alarmTime24, action };
+    console.log(
+      `Alarm ${alarmNumber} set for Relay ${relayId}: ${alarmTime24} with action ${action}`
+    );
+  } else {
+    // Overwrite existing alarm
+    alarms[alarmNumber - 1] = { time: alarmTime24, action };
+    console.log(
+      `Alarm ${alarmNumber} updated for Relay ${relayId}: ${alarmTime24} with action ${action}`
+    );
+  }
+
+  startRelayAlarmCountdown(relayId, alarms, countdownDisplay);
+
+  closeAlarmModal();
+}
+
+// Convert 24-hour format to AM/PM
+function convertTo12HourFormat(time24) {
+  const [hour, minute, second] = time24.split(":").map(Number);
+  const period = hour >= 12 ? "PM" : "AM";
+  const hour12 = hour % 12 || 12; // Convert 0 to 12 for midnight
+  return `${hour12.toString().padStart(2, "0")}:${minute
+    .toString()
+    .padStart(2, "0")}:${second.toString().padStart(2, "0")} ${period}`;
+}
+
+// Updated Alarm Countdown Monitor
+function startRelayAlarmCountdown(relayId, alarms) {
+  clearInterval(relayAlarms[`${relayId}Interval`]);
+
+  // মূল div খুঁজে বের করা
+  const countdownDisplay = document.getElementById(`alarmCountdown${relayId}`);
+  countdownDisplay.innerHTML = ""; // পুরানো তথ্য মুছে ফেলা
+
+  // প্রত্যেকটি রিলের জন্য পাঁচটি করে আলাদা div তৈরি করা
+  alarms.forEach((alarm, index) => {
+    let alarmDiv = document.getElementById(`alarmCountdown${relayId}_${index + 1}`);
+    
+    if (!alarmDiv) {
+      alarmDiv = document.createElement("div");
+      alarmDiv.id = `alarmCountdown${relayId}_${index + 1}`;
+      alarmDiv.classList.add("countdown"); // CSS এর জন্য ক্লাস যোগ করা
+      countdownDisplay.appendChild(alarmDiv);
     }
+  });
 
-    var relayIndex = parseInt(alarmModalRelay); // relayIndex নির্ধারণ করা
+  // প্রতিটি সেকেন্ডে আপডেট করার জন্য Interval সেট করা
+  relayAlarms[`${relayId}Interval`] = setInterval(() => {
+    const now = new Date();
+    const currentTime = `${now.getHours().toString().padStart(2, "0")}:${now
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")}`;
 
-    // AM/PM অনুযায়ী সময় ২৪ ঘন্টায় রূপান্তর
-    if (period === 'PM' && hour < 12) {
-        hour += 12;
-    }
-    if (period === 'AM' && hour === 12) {
-        hour = 0;
-    }
+    alarms.forEach((alarm, index) => {
+      if (alarm) {
+        const timeLeft = calculateTimeLeft(alarm.time, now);
+        const alarmDiv = document.getElementById(`alarmCountdown${relayId}_${index + 1}`);
 
-    // বর্তমান সময় এবং এলার্ম সময় তুলনা করা
-    var now = new Date();
-    var alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, second);
-
-    // যদি এলার্ম সময় অতীত হয়, এটি পরবর্তী দিনের জন্য সেট করা
-    if (alarmTime <= now) {
-        alarmTime.setDate(alarmTime.getDate() + 1);
-    }
-
-    // এলার্ম সময় পর্যন্ত কত সময় বাকি আছে (মিলিসেকেন্ডে)
-    var timeToAlarm = alarmTime - now;
-
-    console.log(`Alarm set for Relay ${relayIndex + 1} at ${alarmTime}.`);
-
-    // কাউন্টডাউন ডিসপ্লে ডিভ সিলেক্ট করা
-    var countdownDisplay = document.getElementById(`alarmCountdown${relayIndex + 1}`);
-    if (!countdownDisplay) {
-        console.error(`Countdown display not found for Relay ${relayIndex + 1}`);
-        return;
-    }
-
-    // এলার্ম বাটন সিলেক্ট করা এবং ক্লাস আপডেট করা
-    var alarmButton = document.getElementById(`alarmBtn${relayIndex}`);
-    if (alarmButton) {
-        alarmButton.classList.add('alarm-on');
-        alarmButton.classList.remove('alarm-off');
-    }
-
-    // কাউন্টডাউন শুরু করা
-    var remainingTime = timeToAlarm / 1000; // সেকেন্ডে রূপান্তর
-    updateCountdownDisplay(countdownDisplay, remainingTime);
-
-    var countdownInterval = setInterval(function () {
-        remainingTime--;
-
-        if (remainingTime <= 0) {
-            clearInterval(countdownInterval); // কাউন্টডাউন বন্ধ করা
-            countdownDisplay.textContent = 'Alarm triggered!';
-
-            // বাটনের ক্লাস পরিবর্তন
-            if (alarmButton) {
-                alarmButton.classList.add('alarm-off');
-                alarmButton.classList.remove('alarm-on');
-            }
-
-            // নির্ধারিত সময় পরে রিলে স্টেট পরিবর্তন করা
-            console.log(`Alarm triggered for Relay ${relayIndex + 1}.`);
-            toggleRelay(relayIndex); // relayIndex দিয়ে toggleRelay কল করা
-        } else {
-            updateCountdownDisplay(countdownDisplay, remainingTime);
+        if (timeLeft) {
+          const alarmTime12 = convertTo12HourFormat(alarm.time);
+          alarmDiv.innerText = `Alarm ${index + 1}: ${timeLeft} | Action: ${alarm.action.toUpperCase()} | Scheduled Time: ${alarmTime12}`;
+        } else if (currentTime === alarm.time) {
+          console.log(`Relay ${relayId} Alarm ${index + 1} triggered! Action: ${alarm.action}`);
+          sendBlynkUpdate(relayId, alarm.action);
+          alarms[index] = null;
+          alarmDiv.innerText = `Alarm ${index + 1}: TRIGGERED!`;
         }
-    }, 1000); // প্রতি ১ সেকেন্ডে আপডেট
+      }
+    });
 
-    closeModal(); // মডাল বন্ধ করা
+    // সব এলার্ম বন্ধ হলে Interval বন্ধ করা
+    if (alarms.every((alarm) => alarm === null)) {
+      clearInterval(relayAlarms[`${relayId}Interval`]);
+    }
+  }, 1000);
 }
 
-// কাউন্টডাউন ডিসপ্লে আপডেট করার জন্য সহায়ক ফাংশন
-function updateCountdownDisplay(displayElement, remainingTime) {
-    var hours = Math.floor(remainingTime / 3600);
-    var minutes = Math.floor((remainingTime % 3600) / 60);
-    var seconds = Math.floor(remainingTime % 60);
 
-    displayElement.textContent = `Time remaining: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+// Calculate Time Left
+function calculateTimeLeft(alarmTime, now) {
+  const [hours, minutes, seconds] = alarmTime.split(":").map(Number);
+  const alarmDate = new Date(now);
+  alarmDate.setHours(hours, minutes, seconds, 0);
+
+  if (alarmDate <= now) return null; // Time has passed
+
+  const diff = alarmDate - now;
+  const h = Math.floor(diff / (1000 * 60 * 60));
+  const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
 }
 
+// Convert to 24-Hour Time Format
+function convertTo24HourFormat(hour, minute, second, period) {
+  if (period === "PM" && hour < 12) hour += 12;
+  if (period === "AM" && hour === 12) hour = 0;
+  return `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")}`;
+}
+
+// Send Update to Blynk
+async function sendBlynkUpdate(relayId, action) {
+  const virtualPin = `V${relayId}`;
+  const value = action === "on" ? 1 : 0;
+  const url = `https://blynk.cloud/external/api/update?token=${BLYNK_TOKEN}&${virtualPin}=${value}`;
+
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      console.log(`Blynk Virtual Pin ${virtualPin} updated to ${value}.`);
+    } else {
+      console.error(`Failed to update Blynk Virtual Pin ${virtualPin}:`, response.statusText);
+    }
+  } catch (error) {
+    console.error("Error updating Blynk Virtual Pin:", error);
+  }
+}
+
+
+ /* ============================================== end Alarm function ============================================== */
+ /* ============================================== start timer function ============================================== */
+
+/**
+ * উন্নত ও কার্যকর কাউন্টডাউন টাইমার ব্যবস্থাপনা স্ক্রিপ্ট
+ * প্রতিটি রিলের জন্য ৫টি কাউন্টডাউন ডিসপ্লে তৈরি করা
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    for (let relay = 1; relay <= 4; relay++) {
+        const container = document.getElementById(`timerCountdown${relay}`); // ✅ এখানে backtick (`) ব্যবহার করা হয়েছে
+        for (let slot = 1; slot <= 5; slot++) {
+            const countdownDiv = document.createElement("div");
+            countdownDiv.className = "countdown";
+            countdownDiv.id = `timerCountdown${relay}_${slot}`; // ✅ এখানেও backtick (`) ব্যবহার করা হয়েছে
+            countdownDiv.style.display = "none"; // ✅ ডিফল্টভাবে লুকানো
+            container.appendChild(countdownDiv);
+        }
+    }
+});
+
+
+// টাইমার স্টোরেজ (প্রতিটি রিলের জন্য পৃথক টাইমার)
+const timerIntervals = {};
+
+/**
+ * টাইমার সেটিং মডাল ওপেন করা
+ * @param {number} relayId - নির্দিষ্ট রিল আইডি
+ */
+function openTimerModal(relayId) {
+    const modal = document.getElementById("timerModal");
+    modal.style.display = "block";
+    modal.setAttribute("data-relay-id", relayId);
+    console.log(`Timer Modal Opened for Relay: V${relayId}`);
+}
+
+/**
+ * টাইমার মডাল বন্ধ করা
+ */
+function closeModal() {
+    const modal = document.getElementById("timerModal");
+    modal.style.display = "none";
+    modal.removeAttribute("data-relay-id");
+}
+
+/**
+ * নতুন টাইমার সেট করা
+ */
 function setTimer() {
-    // `timerDuration` থেকে ডিউরেশন সংগ্রহ করা (সেকেন্ডে)
-    var duration = parseInt(document.getElementById('timerDuration').value); // ডিউরেশন সেকেন্ডে
+    const modal = document.getElementById("timerModal");
+    const relayId = modal.getAttribute("data-relay-id");
+    const duration = parseInt(document.getElementById("timerDuration").value);
+    const action = document.getElementById("timerAction").value;
+    const timerSlot = document.getElementById("timerSlot").value;
 
-    // টার্গেট রিলে বোতামের ID পাওয়া
-    var relayElement = document.getElementById('relay' + timerModalRelay);
-
-    // relayElement চেক করা
-    if (!relayElement) {
-        console.error("Relay element not found for timerModalRelay:", timerModalRelay);
-        alert("Relay element not found! Please try again.");
+    if (!relayId || isNaN(duration) || !action || !timerSlot) {
+        alert("অনুগ্রহ করে রিলে, সময়কাল, অ্যাকশন ও টাইমার স্লট নির্বাচন করুন।");
         return;
     }
 
-    // relayIndex নির্ধারণ করা
-    var relayIndex = parseInt(timerModalRelay); // relay0, relay1 থেকে ইনডেক্স বের করা
+    console.log(`Setting Timer ${timerSlot} for Relay: V${relayId}, Duration: ${duration}s, Action: ${action}`);
 
-    // ডিউরেশন ভ্যালিড চেক করা
-    if (isNaN(duration) || duration <= 0) {
-        alert("Please select a valid duration!");
+    // রিলের জন্য টাইমার ইনিশিয়ালাইজ করা
+    if (!timerIntervals[relayId]) {
+        timerIntervals[relayId] = {};
+    }
+
+    const countdownDisplay = document.getElementById(`timerCountdown${relayId}_${timerSlot}`);
+
+    if (action === "reset") {
+        resetTimer(relayId, timerSlot, countdownDisplay);
         return;
     }
 
-    console.log(`Setting timer for Relay ${relayIndex + 1} for ${duration} seconds.`);
+    startCountdown(relayId, timerSlot, duration, action, countdownDisplay);
+    closeModal();
+}
 
-    // কাউন্টডাউন ডিসপ্লে ডিভ সিলেক্ট করা
-    var countdownDisplay = document.getElementById(`timerCountdown${relayIndex + 1}`);
-    if (!countdownDisplay) {
-        console.error(`Countdown display not found for Relay ${relayIndex + 1}`);
-        return;
+/**
+ * নির্দিষ্ট টাইমার রিসেট করা
+ * @param {number} relayId - রিল আইডি
+ * @param {number} timerSlot - টাইমার স্লট
+ * @param {HTMLElement} displayElement - ডিসপ্লে উপাদান
+ */
+function resetTimer(relayId, timerSlot, displayElement) {
+    if (timerIntervals[relayId] && timerIntervals[relayId][timerSlot]) {
+        clearInterval(timerIntervals[relayId][timerSlot]);
+        delete timerIntervals[relayId][timerSlot];
+    }
+    displayElement.innerText = `Timer ${timerSlot} Reset`;
+    console.log(`Timer ${timerSlot} for Relay V${relayId} has been reset.`);
+}
+
+/**
+ * কাউন্টডাউন টাইমার শুরু করা
+ * @param {number} relayId - রিল আইডি
+ * @param {number} timerSlot - টাইমার স্লট
+ * @param {number} duration - সময়কাল (সেকেন্ডে)
+ * @param {string} action - অ্যাকশন (on/off)
+ * @param {HTMLElement} displayElement - ডিসপ্লে উপাদান
+ */
+function startCountdown(relayId, timerSlot, duration, action, displayElement) {
+    if (!timerIntervals[relayId]) {
+        timerIntervals[relayId] = {}; // ✅ relayId ইনিশিয়ালাইজ করা হচ্ছে
     }
 
-    // টাইমার বাটন সিলেক্ট করা এবং ক্লাস আপডেট করা
-    var timerButton = document.getElementById(`timerBtn${relayIndex}`);
-    if (timerButton) {
-        timerButton.classList.add('timer-on');
-        timerButton.classList.remove('timer-off');
-    }
+    clearInterval(timerIntervals[relayId][timerSlot]);
 
-    // কাউন্টডাউন শুরু করা
-    var remainingTime = duration;
+    let remainingTime = duration;
 
-    countdownDisplay.textContent = `Time remaining: ${remainingTime} seconds`;
+    const formatTime = (seconds) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${hours}h ${minutes}m ${secs}s`; // ✅ Backtick (`) ব্যবহার করা হয়েছে
+    };
 
-    var countdownInterval = setInterval(function () {
-        remainingTime--;
+    displayElement.innerText = `Timer ${timerSlot}: ${formatTime(remainingTime)} left`; // ✅ Backtick (`) ব্যবহার করা হয়েছে
+    displayElement.style.display = "block"; // ✅ টেক্সট দেখানোর জন্য display="block" করা হলো
 
-        if (remainingTime <= 0) {
-            clearInterval(countdownInterval); // কাউন্টডাউন বন্ধ করা
-            countdownDisplay.textContent = `Timer ended.`;
-
-            // নির্ধারিত সময় শেষে বাটনের ক্লাস পরিবর্তন করা
-            if (timerButton) {
-                timerButton.classList.add('timer-off');
-                timerButton.classList.remove('timer-on');
-            }
-
-            // নির্ধারিত সময় শেষে রিলে স্টেট পরিবর্তন করা
-            console.log(`Timer ended. Toggling Relay ${relayIndex + 1}.`);
-            toggleRelay(relayIndex); // relayIndex দিয়ে toggleRelay কল করা
+    timerIntervals[relayId][timerSlot] = setInterval(() => {
+        if (remainingTime > 0) {
+            remainingTime--;
+            displayElement.innerText = `Timer ${timerSlot}: ${formatTime(remainingTime)} left | Duration: ${formatTime(duration)} | Action: ${action}`;
         } else {
-            countdownDisplay.textContent = `Time remaining: ${remainingTime} seconds`;
+            clearInterval(timerIntervals[relayId][timerSlot]);
+            displayElement.innerText = `Timer ${timerSlot} Finished!`;
+            sendBlynkUpdate(relayId, action);
+            
+            // ✅ টাইমার শেষ হলে ডিসপ্লে লুকিয়ে ফেলতে চাইলে:
+            setTimeout(() => {
+                displayElement.style.display = "none";
+            }, 3000); // 3 সেকেন্ড পর লুকাবে
         }
-    }, 1000); // প্রতি ১ সেকেন্ডে আপডেট
-
-    closeModal();  // মডাল বন্ধ করা
+    }, 1000);
 }
 
 
-      
-function closeModal() { 
-  document.getElementById('alarmModal').style.display = 'none'; 
-  document.getElementById('timerModal').style.display = 'none'; 
+/**
+ * Blynk API-তে আপডেট পাঠানো
+ * @param {number} relayId - রিল আইডি
+ * @param {string} action - অ্যাকশন (on/off)
+ */
+async function sendBlynkUpdate(relayId, action) {
+    const virtualPin = `V${relayId}`;
+    const value = action === "on" ? 1 : 0;
+    const url = `https://blynk.cloud/external/api/update?token=${BLYNK_TOKEN}&${virtualPin}=${value}`;
+
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            console.log(`Blynk Virtual Pin ${virtualPin} updated to ${value}.`);
+        } else {
+            console.error(`Failed to update Blynk Virtual Pin ${virtualPin}:`, response.statusText);
+        }
+    } catch (error) {
+        console.error("Error updating Blynk Virtual Pin:", error);
+    }
 }
 
-function openAlarmModal(relay) { 
-  alarmModalRelay = relay; 
-  document.getElementById('alarmModal').style.display = 'block'; 
-}
 
 
-      
-function openTimerModal(relay) {
-  timerModalRelay = relay; 
-  document.getElementById('timerModal').style.display = 'block'; 
-}
-
-      
+ /* ============================================== end timer function ============================================== */ 
 function updateClock() { 
   var now = new Date(); 
   var h = now.getHours(); 
