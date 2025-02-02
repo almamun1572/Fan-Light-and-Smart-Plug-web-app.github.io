@@ -555,40 +555,47 @@ h1 {
   transition: all 0.3s ease-in-out;
 }
 
+      .mamun {
+  margin-top: 1px;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+  width: 95%;
+}
+
     </style>
     
   </head>
   
   <body>
-    <div class='container'>
+<div class='mamun'>
   <h1><i class="icon">🔌</i> Control Smart Plug 2</h1>
- <div class='relay'>
-      <div id="clock-container">
-        <div id="clock"></div>
-      </div>
-     
- <div class='relay'> 
-<!-- কাস্টম ড্রপডাউন -->
-<div class="custom-dropdown">
-  <div class="dropdown-selected" onclick="toggleDropdown()">
-    <span>Select an option</span>
-    <i class="arrow"></i>
+  
+  <div id="clock-container">
+    <div id="clock"></div>
   </div>
-  <ul class="dropdown-options">
-    <li onclick="selectOption('Go to Smart Plug', 'SmartPlug.html')">
-      <i class="icon">🔋</i> Go to Smart Plug
-    </li>
-    <li onclick="selectOption('Go to Smart Plug 2', 'index.html')">
-      <i class="icon">🔌</i> Go to Smart Plug 2
-    </li>
-  <li onclick="selectOption('Go to Fan Light', 'FanLight.html')">
-    <i class="icon">💡</i> Go to Fan Light
-  </li>
-  </ul>
+
+  <!-- কাস্টম ড্রপডাউন -->
+  <div class="custom-dropdown">
+    <div class="dropdown-selected" onclick="toggleDropdown()">
+      <span>Select an option</span>
+      <i class="arrow"></i>
+    </div>
+    <ul class="dropdown-options">
+      <li onclick="selectOption('Go to Smart Plug', 'SmartPlug.html')">
+        <i class="icon">🔋</i> Go to Smart Plug
+      </li>
+      <li onclick="selectOption('Go to Smart Plug 2', 'index.html')">
+        <i class="icon">🔌</i> Go to Smart Plug 2
+      </li>
+      <li onclick="selectOption('Go to Fan Light', 'FanLight.html')">
+        <i class="icon">💡</i> Go to Fan Light
+      </li>
+    </ul>
+  </div>
 </div>
-</div>
-</div>
-</div>
+
+ <div class='mamun'></div>
     <div class='container'>
     <div class='relay'>
   <div class='relay-header'>Relay 1</div>
